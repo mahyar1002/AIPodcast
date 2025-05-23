@@ -13,7 +13,7 @@ class PodcastAgent:
         self.conversation_history = []
 
     def _append_to_history(self, speaker: str, message: str):
-        self.conversation_history.append({"role": speaker, "message": message})
+        self.conversation_history.append({"role": speaker, "message": message })
 
     def _format_history(self) -> str:
         return "\n".join([f"{entry['role']}: {entry['message']}" for entry in self.conversation_history])

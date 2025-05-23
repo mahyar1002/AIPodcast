@@ -1,5 +1,6 @@
 from .base import BaseEmbedding
 from langchain.embeddings.openai import OpenAIEmbeddings
+from langchain_google_genai import GoogleGenerativeAIEmbeddings
 from config.settings import settings
 
 
@@ -13,9 +14,11 @@ class OpenAIEmbedding(BaseEmbedding):
 
 class GoogleEmbedding(BaseEmbedding):
     def __init__(self):
-        self.model = "google/embedding-model"
+        self.model = settings.GOOGLE_EMBEDDING_MODEL
 
     def get_embedding(self):
-        raise NotImplementedError(
-            "GoogleEmbedding is not implemented yet."
+        return GoogleGenerativeAIEmbeddings(
+            model=self.model,
+            google_api_key=settings.GOOGLE_API_KEY,
+            task_type="retrieval_document",
         )

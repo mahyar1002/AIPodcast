@@ -8,8 +8,9 @@ from models.factory import llm_model
 
 
 class GuestAgent:
-    def __init__(self, name: str, company: str, characteristics: str):
+    def __init__(self, name: str, voice_name: str, company: str, characteristics: str):
         self.name = name
+        self.voice_name = voice_name
         self.company = company
         self.characteristics = characteristics
         self.web_scraper = WebScraper(company)

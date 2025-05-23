@@ -27,6 +27,10 @@ class Settings(BaseSettings):
         "OPENAI_EMBEDDING_MODEL", "text-embedding-3-large")
     DEFAULT_AI_MODEL: str = os.getenv("DEFAULT_AI_MODEL", "OPENAI")
 
+    GOOGLE_API_KEY: str = os.getenv("GOOGLE_API_KEY")
+    GOOGLE_LLM_MODEL: str = os.getenv("GOOGLE_LLM_MODEL", "gemeni-1.5-turbo")
+    GOOGLE_EMBEDDING_MODEL: str = os.getenv("GOOGLE_EMBEDDING_MODEL", "gemini-embedding-1.5")
+
     # Agent settings
     TAVILY_API_KEY: str = os.getenv("TAVILY_API_KEY")
 

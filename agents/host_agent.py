@@ -5,8 +5,9 @@ from models.factory import llm_model
 
 
 class HostAgent:
-    def __init__(self, name: str):
+    def __init__(self, name: str, voice_name: str):
         self.name = name
+        self.voice_name = voice_name
         self.questions_asked = []
 
     def generate_opening(self, topic: str, guests: List[str]) -> str:
