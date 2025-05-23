@@ -4,7 +4,7 @@ from agents.host_agent import HostAgent
 
 
 class PodcastAgent:
-    def __init__(self, topic: str, host: HostAgent, guests: List[GuestAgent], max_turns: int = 10):
+    def __init__(self, topic: str, host: HostAgent, guests: List[GuestAgent], max_turns: int = 5):
         self.topic = topic
         self.host = host
         self.guests = guests
@@ -52,7 +52,7 @@ class PodcastAgent:
         return self.conversation_history
 
     def _generate_cross_talk(self) -> str:
-        """Optional: simulate quick back-and-forth between guests (optional, simple version)"""
+        """Quick back-and-forth between guests"""
         if len(self.guests) >= 2:
             guest1, guest2 = self.guests[0], self.guests[1]
             # last host question

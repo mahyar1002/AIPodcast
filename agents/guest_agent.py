@@ -1,6 +1,6 @@
 from langchain_openai import ChatOpenAI
 from langchain.schema import HumanMessage, SystemMessage
-from .web_scraper import WebScraper
+from utils.web_scraper import WebScraper
 from memory.conversation import ConversationMemory
 from typing import Dict, Any
 from config.settings import settings
@@ -19,11 +19,10 @@ class GuestAgent:
         """Gather knowledge about the company from web sources"""
         company_info = self.web_scraper.get_info()
         # recent_news = self.web_scraper.get_news(self.company)
-        # Recent News:
-        # {' '.join(recent_news)}
+
         knowledge = f"""
         Company Information for {self.company}:
-        {company_info}
+        {company_info.get("content", "No summary available.")}
         """
         return knowledge
 

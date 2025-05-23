@@ -25,11 +25,11 @@ def wiki_search(query: str) -> str:
 
 @tool
 def web_search(query: str) -> str:
-    """Search Tavily for a query and return maximum 5 results.
+    """Search Tavily for a query and return maximum 2 results.
 
     Args:
         query: The search query."""
-    search_tool = TavilySearchResults(max_results=5)
+    search_tool = TavilySearchResults(max_results=2)
     search_docs = search_tool.invoke({"query": query})
 
     formatted_search_docs = "\n\n---\n\n".join(
