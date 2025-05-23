@@ -6,9 +6,9 @@ from .schema import InitiateRequest
 
 async def initiate_agents(params: InitiateRequest):
     host = HostAgent(name=params.host.name)
-    guest1 = GuestAgent(name=params.guests[0].name, company=params.guests[0].comapny,
+    guest1 = GuestAgent(name=params.guests[0].name, company=params.guests[0].company,
                         characteristics=params.guests[0].characteristics)
-    guest2 = GuestAgent(name=params.guests[1].name, company=params.guests[1].comapny,
+    guest2 = GuestAgent(name=params.guests[1].name, company=params.guests[1].company,
                         characteristics=params.guests[1].characteristics)
 
     podcast = PodcastAgent(topic=params.host.topic,

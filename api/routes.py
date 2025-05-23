@@ -1,13 +1,13 @@
 from fastapi import APIRouter
-from .schema import NextRequest
+from .schema import NextRequest, InitiateRequest
 from .service import initiate_agents
 
 router = APIRouter(prefix="/v1/podcast", tags=["PODCAST_V1"])
 
 
-@router.get("/initiate")
-async def initiate():
-    response = await initiate_agents()
+@router.post("/initiate")
+async def initiate(params: InitiateRequest):
+    response = await initiate_agents(params)
     return response
 
 
