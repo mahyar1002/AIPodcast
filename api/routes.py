@@ -13,17 +13,8 @@ async def initiate(params: InitiateRequest):
     return response
 
 
-@router.post("/next")
-async def next(params: NextRequest):
-    print(params.session_id)
-    return "speech text"
-
-
 @router.post("/voice")
 async def voice(params: VoiceModel):
-    # text = "And we also have Bjorn, a seasoned tech journalist who’s spent years reviewing and comparing telecom services for various platforms. Great to have you here, Bjorn! "
-    # await synthesize_speech(text=params.text, voice_name=params.voice_name)
-    # return "success"
     audio_stream = await synthesize_speech(params.text, params.voice_name)
 
     return StreamingResponse(

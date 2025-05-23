@@ -2,6 +2,7 @@ import requests
 from pathlib import Path
 import tempfile
 import os
+import re
 
 
 def download_task_file(task_id: str, file_name: str) -> str:
@@ -45,3 +46,14 @@ def format_document(doc):
             content = str(doc)
 
     return f'<Document source="{source}" page="{page}"/>\n{content}\n</Document>'
+
+
+def clean_text(text: str) -> str:
+    # Remove text between brackets including the brackets
+    text = re.sub(r"\[.*?\]", "", text)
+    # Replace multiple newlines with a single newline
+    text = re.sub(r"\n{2,}", "\n\n", text)
+    # Remove everything up to and including the first colon
+    text = re.sub(r"^[^:]*:\s*", "", text, count=1)
+    # Strip leading/trailing whitespace
+    return text.strip()

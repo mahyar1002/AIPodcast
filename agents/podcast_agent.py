@@ -1,7 +1,7 @@
 from typing import List, Dict
 from agents.guest_agent import GuestAgent
 from agents.host_agent import HostAgent
-
+from utils.util import clean_text
 
 class PodcastAgent:
     def __init__(self, topic: str, host: HostAgent, guests: List[GuestAgent], max_turns: int = 5):
@@ -14,7 +14,7 @@ class PodcastAgent:
 
     def _append_to_history(self, speaker: str, message: str, voice_name: str):
         self.conversation_history.append(
-            {"role": speaker, "voice_name": voice_name, "message": message})
+            {"role": speaker, "voice_name": voice_name, "message": clean_text(message)})
 
     def _format_history(self) -> str:
         return "\n".join([f"{entry['role']}: {entry['message']}" for entry in self.conversation_history])
@@ -58,8 +58,7 @@ class PodcastAgent:
             guest1, guest2 = self.guests[0], self.guests[1]
             # last host question
             last_question = self.conversation_history[-3]["message"]
-            g1 = guest1.generate_response(self._format_history(
-            ), f"Respond directly to {guest2.name}'s opinion.")
+            g1 = guest1.generate_response(self._format_history(), f"Respond directly to {guest2.name}'s opinion.")
             self._append_to_history(guest1.name, g1, guest1.voice_name)
             g2 = guest2.generate_response(self._format_history(
             ), f"Respond directly to {guest1.name}'s opinion.")
