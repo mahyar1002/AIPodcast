@@ -54,8 +54,8 @@ async def synthesize_speech(text, voice_name="nova"):
     }
 
     response = requests.post(url, headers=headers, json=data)
-    with open("output.mp3", "wb") as f:
-        f.write(response.content)
+    # with open("output.mp3", "wb") as f:
+    #     f.write(response.content)
     if response.ok:
         return io.BytesIO(response.content)
     else:
